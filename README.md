@@ -1,13 +1,13 @@
 <!-- HEADER: Title of the project -->
-<h1 align="center">Travlr Enhanced</h1>
+<h1 align="center">Travlr</h1>
 
 <!-- INTRODUCTION: Brief introduction about the project, its inspiration, and purpose -->
 ## Introduction
-The TravlrEnhanced project is an upgraded version of the original Travlr application, designed to offer an improved travel planning experience with enhanced security, performance, and usability. This project integrates advanced authentication, optimized database queries, and new API enhancements to ensure a seamless experience for users managing their travel plans.
+The Travlr project is designed to provide a seamless travel planning experience by offering powerful APIs and an intuitive server setup. This project serves as a one-stop platform for users to manage their travel data, plan itineraries, and discover new travel destinations. Born from a passion for both technology and exploration, Travlr aims to make travel easier, smarter, and more enjoyable.
 
 <!-- DESCRIPTION: Detailed description of the project, its features, and functionalities -->
 ## Description
-TravlrEnhanced is a full-stack travel application that provides an intuitive interface with powerful backend capabilities. The system allows users to manage trips, explore travel destinations, and securely authenticate their accounts with JWT-based authentication. It also includes performance optimizations and data caching to enhance efficiency and scalability.
+Travlr is a full-stack travel application that combines an intuitive user interface with powerful backend APIs. The system allows users to manage their travel information, explore various destinations, and track trips in an easy-to-use environment. The project includes a server setup, data management, and robust integration with public APIs to enhance the overall experience.
 
 <!-- BUILT WITH: Technologies and tools used in the project -->
 ### Built With
@@ -19,54 +19,40 @@ TravlrEnhanced is a full-stack travel application that provides an intuitive int
 <!-- PROJECT STRUCTURE: Overview of the project's structure and main components -->
 ## Project Structure
 - `app.js`: Main application logic and server setup
-- `routes/`: API routes and request handlers
-- `controllers/`: Logic for processing API requests
-- `models/`: Mongoose schemas and database models
-- `middleware/`: Authentication and security middleware (JWT)
-- `config/`: Database and environment configurations
+- `app_api/`: Folder containing API routes and handlers
+- `app_server/`: Server-side logic and configurations
+- `bin/`: Folder for binary or executable files
+- `data/`: Data storage and management
+- `node_modules/`: Node.js dependencies
+- `package-lock.json`: Ensures consistent dependencies
+- `package.json`: Project dependencies and metadata
 - `public/`: Public assets like images, CSS, and JavaScript files
 
 <!-- SYSTEM CAPABILITIES: A list of features and capabilities of the project -->
 ## System Capabilities
-- Secure JWT authentication for user login and registration
-- Role-based access control for managing different user permissions
-- Optimized database queries with MongoDB indexing for improved performance
-- Caching with Redis to reduce database load and speed up API responses
-- API enhancements to allow advanced trip searches and recommendations
-- Improved error handling and logging for debugging and maintenance
-- RESTful API with robust documentation
-  
+- Manage and organize travel data
+- Seamless API integration for external travel-related data
+- Secure and scalable backend with MongoDB
+- Real-time updates and notifications for itinerary changes
+- User-friendly frontend for easy navigation
+
 <!-- EXAMPLES OF USAGE: Examples showing how to use the project -->
 ## Examples of Usage
 Here's an example of how to set up the basic server and test the API:
 
 ```javascript
 // Initialize the server
-// User Login
-fetch('/api/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: 'user@example.com', password: 'securepassword' })
-})
-.then(response => response.json())
-.then(data => console.log('JWT Token:', data.token));
-```
+const express = require('express');
+const app = express();
+const port = 3000;
 
-Example of caching trip data with Redis:
-```javascript
-const redis = require('redis');
-const client = redis.createClient();
+// Basic route to test the API
+app.get('/', (req, res) => {
+  res.send('Welcome to Travlr!');
+});
 
-app.get('/api/trips', async (req, res) => {
-    client.get('trips', async (err, data) => {
-        if (data) {
-            res.json(JSON.parse(data));
-        } else {
-            const trips = await Trip.find({});
-            client.setex('trips', 3600, JSON.stringify(trips));
-            res.json(trips);
-        }
-    });
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
 ```
 
